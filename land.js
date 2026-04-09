@@ -155,10 +155,10 @@ document.addEventListener('DOMContentLoaded', function() {
   
   function updateTimeStatus() {
     const now = new Date();
-    const mskTime = new Date(now.toLocaleString("en-US", { timeZone: "Europe/Moscow" }));
+    const mskTime = new Date(now.toLocaleString("en-US", { timeZone: "Asia/Yekaterinburg" }));
     const hours = mskTime.getHours().toString().padStart(2, '0');
     const minutes = mskTime.getMinutes().toString().padStart(2, '0');
-    statusDiv.innerHTML = `🟢 готов к работе · ${hours}:${minutes} MSK`;
+    statusDiv.innerHTML = `🟢 готов к работе · ${hours}:${minutes} YEKT`;
   }
   updateTimeStatus();
   setInterval(updateTimeStatus, 60000);
