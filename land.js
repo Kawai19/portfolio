@@ -1,5 +1,5 @@
 document.addEventListener('DOMContentLoaded', function() {
-  // === СЛУЧАЙНЫЕ ЗНАЧКИ И ЦВЕТА ДЛЯ ТРЁХ ПЛАВАЮЩИХ ИКОНОК ===
+  // Случайные значки и цвета для трёх плавающих иконок
   const iconNames = [
     'developer_mode', 'computer', 'build', 'code', 'settings', 'storage', 'api', 'cloud',
     'router', 'security', 'web', 'dns', 'terminal', 'integration_instructions', 'auto_awesome',
@@ -30,21 +30,30 @@ document.addEventListener('DOMContentLoaded', function() {
     icon.style.color = getRandomItem(colorPalette);
   });
   
-  // Бургер-меню
+  // Бургер-меню с проверками
   const burger = document.getElementById('burgerBtn');
   const navLinks = document.getElementById('navLinks');
+  
   function toggleMenu() {
+    if (!navLinks || !burger) return;
     navLinks.classList.toggle('active');
     burger.classList.toggle('active');
   }
-  if (burger) burger.addEventListener('click', toggleMenu);
   
-  document.querySelectorAll('.nav-links a').forEach(link => {
-    link.addEventListener('click', () => {
-      navLinks.classList.remove('active');
-      burger.classList.remove('active');
+  if (burger) {
+    burger.addEventListener('click', toggleMenu);
+  } else {
+    console.warn('Кнопка бургера не найдена!');
+  }
+  
+  if (navLinks) {
+    document.querySelectorAll('.nav-links a').forEach(link => {
+      link.addEventListener('click', () => {
+        navLinks.classList.remove('active');
+        if (burger) burger.classList.remove('active');
+      });
     });
-  });
+  }
   
   // Плавный скролл
   document.querySelectorAll('a[href^="#"]').forEach(anchor => {
@@ -146,7 +155,6 @@ document.addEventListener('DOMContentLoaded', function() {
   
   function updateTimeStatus() {
     const now = new Date();
-    // Принудительно показываем московское время (UTC+3)
     const mskTime = new Date(now.toLocaleString("en-US", { timeZone: "Europe/Moscow" }));
     const hours = mskTime.getHours().toString().padStart(2, '0');
     const minutes = mskTime.getMinutes().toString().padStart(2, '0');
@@ -156,18 +164,15 @@ document.addEventListener('DOMContentLoaded', function() {
   setInterval(updateTimeStatus, 60000);
   
   // Эффект при скролле для хедера
-  let lastScroll = 0;
   window.addEventListener('scroll', () => {
-    const currentScroll = window.pageYOffset;
     const header = document.querySelector('.header');
-    if (currentScroll > 100) {
+    if (window.pageYOffset > 100) {
       header.style.background = 'rgba(18, 18, 18, 0.98)';
       header.style.boxShadow = '0 2px 10px rgba(0,0,0,0.3)';
     } else {
       header.style.background = 'rgba(18, 18, 18, 0.95)';
       header.style.boxShadow = 'none';
     }
-    lastScroll = currentScroll;
   });
   
   // Параллакс для hero-title
@@ -179,5 +184,17 @@ document.addEventListener('DOMContentLoaded', function() {
     });
   }
   
-  console.log('✅ Портфолио загружено: московское время в статусе');
+  console.log('✅ Портфолио загружено: бургер работает, анимация внутри шапки');
+  
+  const logo = document.querySelector('.logo');
+  if (logo) {
+    logo.addEventListener('click', () => {
+      const heroSection = document.querySelector('.hero');
+      if (heroSection) {
+        const offset = 70;
+        const elementPosition = heroSection.getBoundingClientRect().top + window.scrollY;
+        window.scrollTo({ top: elementPosition - offset, behavior: 'smooth' });
+      }
+    });
+  }
 });

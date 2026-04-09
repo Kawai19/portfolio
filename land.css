@@ -18,14 +18,12 @@ body {
   padding: 0 32px;
 }
 
-/* ===== ТЁМНЫЙ HEADER ===== */
 .header {
   position: fixed;
   top: 0;
   left: 0;
   width: 100%;
   background: rgba(18, 18, 18, 0.95);
-  backdrop-filter: blur(12px);
   z-index: 1000;
   border-bottom: 1px solid rgba(255, 255, 255, 0.08);
   transition: all 0.2s ease;
@@ -46,8 +44,8 @@ body {
 }
 
 @keyframes rotateWave {
-  0% { transform: rotate(0deg) translate(-10%, -10%); }
-  100% { transform: rotate(360deg) translate(-10%, -10%); }
+  0% { transform: rotate(0deg); }
+  100% { transform: rotate(360deg); }
 }
 
 .nav-bar {
@@ -86,7 +84,6 @@ body {
   color: #0066cc;
 }
 
-/* Бургер (светлые полоски) */
 .burger {
   display: none;
   cursor: pointer;
@@ -107,7 +104,6 @@ body {
   border-radius: 2px;
 }
 
-/* Секции (тёмные) */
 section {
   padding: 100px 0 80px;
 }
@@ -118,7 +114,6 @@ section {
   background: url('res/star_sky.jpg') center/cover fixed no-repeat;
 }
 
-/* HERO (светлая) */
 .hero {
   min-height: 100vh;
   display: flex;
@@ -143,7 +138,6 @@ section {
   z-index: 1;
 }
 
-/* Убираем центрирование контейнера в hero */
 .hero .container {
   max-width: 100%;
   margin: 0;
@@ -151,7 +145,6 @@ section {
   width: 100%;
 }
 
-/* === ОСНОВНОЕ ИЗМЕНЕНИЕ: повышенная специфичность, убран !important === */
 .hero .hero-content {
   display: flex;
   flex-direction: column;
@@ -161,8 +154,8 @@ section {
   position: relative;
   z-index: 2;
   width: 100%;
-  max-width: 700px;          /* ограничиваем ширину текста */
-  padding-left: 13rem;        /* сдвиг вправо — работает без !important */
+  max-width: 700px;
+  padding-left: 16rem;
 }
 
 .hero-content,
@@ -230,7 +223,6 @@ section {
   border-color: #ccc;
 }
 
-/* Кнопка "Узнать больше" */
 .hero-more-btn {
   position: absolute;
   bottom: 40px;
@@ -263,7 +255,6 @@ section {
   box-shadow: 0 8px 20px rgba(0, 102, 204, 0.25);
 }
 
-/* ===== ТРИ ПЛАВАЮЩИЕ ИКОНКИ (только позиционирование, цвета и значки задаются в JS) ===== */
 .floating-icon {
   position: absolute;
   pointer-events: none;
@@ -273,14 +264,12 @@ section {
   transition: color 0.2s ease;
 }
 
-/* Основная иконка (developer_mode) */
 .icon-main {
   right: 5%;
   bottom: 15%;
   animation-duration: 5s;
 }
 
-/* Вторая иконка */
 .icon-secondary-1 {
   right: 15%;
   bottom: 30%;
@@ -289,7 +278,6 @@ section {
   animation-delay: -1s;
 }
 
-/* Третья иконка */
 .icon-secondary-2 {
   right: 20%;
   bottom: 5%;
@@ -311,7 +299,6 @@ section {
   }
 }
 
-/* Тёмная тема для остальных секций */
 .section-title {
   font-size: 2rem;
   font-weight: 600;
@@ -402,7 +389,6 @@ section {
   transform: translateY(-6px);
 }
 
-/* === НОВЫЙ СТИЛЬ ДЛЯ КРУГЛЫХ ИКОНОК В СЕКЦИИ НАВЫКИ === */
 .project-icon {
   background: linear-gradient(135deg, #1e2a3a 0%, #0f1724 100%);
   border-radius: 60px;
@@ -446,7 +432,6 @@ section {
   font-size: 0.9rem;
 }
 
-/* ===== СТИЛИ ФУТЕРА С КОНТАКТАМИ ===== */
 .footer {
   border-top: 1px solid #2c2c2c;
   text-align: center;
@@ -486,7 +471,16 @@ section {
   color: #888;
 }
 
-/* Адаптивность */
+.footer-contacts-title {
+  font-size: 0.85rem;
+  font-weight: 500;
+  color: #aaa;
+  letter-spacing: 0.5px;
+  margin-bottom: 0.5rem;
+  width: 100%;
+  text-align: center;
+}
+
 @media (max-width: 900px) {
   .container {
     padding: 0 24px;
@@ -521,6 +515,20 @@ section {
 }
 
 @media (max-width: 768px) {
+  .hero {
+    min-height: 100vh;
+    height: 100vh;
+    padding-top: 70px;
+  }
+
+  /* Кнопка "Узнать больше" — по центру по горизонтали, поднята выше */
+  .hero-more-btn {
+    bottom: 9%;
+    left: 30%;
+    transform: translateX(-50%);
+    top: auto;
+  }
+
   .nav-links {
     position: fixed;
     top: 70px;
@@ -536,7 +544,7 @@ section {
     gap: 2rem;
     transition: left 0.4s cubic-bezier(0.2, 0.9, 0.4, 1.1);
     box-shadow: 2px 0 20px rgba(0,0,0,0.5);
-    z-index: 999;
+    z-index: 1001;
   }
 
   .nav-links a {
@@ -566,13 +574,6 @@ section {
   }
   .btn-icon {
     padding: 8px 16px;
-    font-size: 0.9rem;
-  }
-  .hero-more-btn {
-    bottom: 20px;
-  }
-  .btn-more {
-    padding: 8px 20px;
     font-size: 0.9rem;
   }
   .hero .hero-content {
@@ -610,9 +611,13 @@ section {
   transform: translateY(0);
 }
 
-/* ===== ФИОЛЕТОВОЕ СВЕЧЕНИЕ РОВНО ПОСЕРЕДИНЕ ===== */
 #about {
   position: relative;
+  padding-bottom: 40px;
+}
+
+#skills {
+  padding-top: 40px;
 }
 
 #about::before {
@@ -627,13 +632,4 @@ section {
   pointer-events: none;
   z-index: 5;
   opacity: 0.9;
-}
-.footer-contacts-title {
-  font-size: 0.85rem;
-  font-weight: 500;
-  color: #aaa;
-  letter-spacing: 0.5px;
-  margin-bottom: 0.5rem;
-  width: 100%;
-  text-align: center;
 }
