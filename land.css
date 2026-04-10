@@ -44,7 +44,7 @@ body {
   );
   animation: rotateWave 12s infinite linear;
   pointer-events: none;
-  z-index: -1;
+  z-index: -5;
 }
 
 @keyframes rotateWave {
