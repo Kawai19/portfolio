@@ -524,7 +524,7 @@ section {
   /* Кнопка "Узнать больше" — по центру по горизонтали, поднята выше */
   .hero-more-btn {
     bottom: 9%;
-    left: 30%;
+    left: 25%;
     transform: translateX(-50%);
     top: auto;
   }
